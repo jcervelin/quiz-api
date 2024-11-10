@@ -1,0 +1,39 @@
+openapi: "3.1.0"
+info:
+  title: "Quiz API"
+  description: "Simple Kotlin and ktor app, that exposes questions and checks the answers, based on a preloaded csv file."
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /next-question:
+    get:
+      description: "Returns a random question from a csv file."
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+  /submit-answer:
+    get:
+      description: "Given a question provided by /next-question."
+      parameters:
+        - name: "question"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "answer"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
